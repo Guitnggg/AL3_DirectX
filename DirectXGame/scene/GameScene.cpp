@@ -4,7 +4,10 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	delete model_;
+	delete player_;
+}
 
 void GameScene::Initialize() {
 
@@ -14,9 +17,23 @@ void GameScene::Initialize() {
 
 	// ファイル名を指定してテクスチャを呼び出す
 	textureHandle_=TextureManager::Load("mario.jpg");
+
+	// 3Dモデルの生成
+	model_=Model::Create();
+
+	// ビュープロジェクションの初期化
+	viewProjection_.Initialize();
+
+	// 
+	player_ = new Player();
+	// 
+	player_->Initialize();
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	// 
+	player_->Update();
+}
 
 void GameScene::Draw() {
 
