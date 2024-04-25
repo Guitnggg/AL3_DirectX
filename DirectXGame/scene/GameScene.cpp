@@ -11,6 +11,9 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+
+	// ファイル名を指定してテクスチャを呼び出す
+	textureHandle_=TextureManager::Load("mario.jpg");
 }
 
 void GameScene::Update() {}
