@@ -7,6 +7,7 @@
 #include "SafeDelete.h"
 #include "Sprite.h"
 #include "ViewProjection.h"
+#include "WorldTransform.h"
 #include "Player.h"
 
 /// <summary>
@@ -49,13 +50,16 @@ private: // メンバ変数
 	uint32_t textureHandle_= 0;
 
 	// 3Dモデル
-	Model*model_=nullptr;
+	Model* model_ = nullptr;
+
+	// ワールドトランスフォーム
+	WorldTransform worldTransform_;
 
 	// ビュープロジェクション
 	ViewProjection viewProjection_;
 
-	// 
-	Player*player_=nullptr;
+	// 自キャラ
+	Player* player_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

@@ -1,30 +1,34 @@
-#include "Model.h"
+﻿#include "Model.h"
 #include "WorldTransform.h"
 
 class Player{
 public:
 	/// <summary>
-	/// ������
+	/// 初期化
 	/// </summary>
-	void Intialize();
+	/// <param name="model">モデル</param>
+	/// <param name="textureHandle">テクスチャハンドル</param>
+	void Inttialize(Model*model, uint32_t textureHandle, ViewProjection viewProjection_);
 
 	/// <summary>
-	/// ������
+	/// 初期化
 	/// </summary>
 	void Update();
 
 	/// <summary>
-	/// ������
+	/// 初期化
 	/// </summary>
 	void Draw();
 
 private:
-	// 
+	// ワールド変換データ
 	WorldTransform worldTransform_;
 
-	// 
-	Model*model=nullptr;
+	// モデル
+	Model* model = nullptr;
 
-	// 
-	uint32_t textureHandle_=0u;
+	// テクスチャハンドル
+	uint32_t textureHandle_ = 0u;
+
+	ViewProjection* viewProjection_ = nullptr;
 };
