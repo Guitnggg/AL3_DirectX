@@ -4,13 +4,20 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() 
+{
+	// 3Dモデルデータの解放
+	delete model_;
+}
 
 void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
+
+	// 3Dモデルの生成
+	model_ = Model::Create();
 }
 
 void GameScene::Update() {}
