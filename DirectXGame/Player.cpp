@@ -1,16 +1,16 @@
 ﻿#include "Player.h"
 #include <cassert>
 
-void Player::Inttialize(Model*model, uint32_t textureHandle, ViewProjection viewProjection_)
+void Player::Inttialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection)
 {
 	// NULLポインタチェック
 	assert(model);
 
-	// 引数として受け取ったデータをメンバ変数に記録する
-
-
-	// ワールド変換の初期化
+	model_ = model;
+	textureHandle_ = textureHandle;
+	viewProjection_ = viewProjection;
 	
+	worldTransform_.Initialize();	
 }
 
 void Player::Update()

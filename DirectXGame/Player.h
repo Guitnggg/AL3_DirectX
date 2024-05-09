@@ -8,7 +8,7 @@ public:
 	/// </summary>
 	/// <param name="model">モデル</param>
 	/// <param name="textureHandle">テクスチャハンドル</param>
-	void Inttialize(Model*model, uint32_t textureHandle, ViewProjection viewProjection_);
+	void Inttialize(Model*model, uint32_t textureHandle, ViewProjection* viewProjection);
 
 	/// <summary>
 	/// 初期化
@@ -25,7 +25,7 @@ private:
 	WorldTransform worldTransform_;
 
 	// モデル
-	Model* model = nullptr;
+	Model* model_ = nullptr;
 
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0u;

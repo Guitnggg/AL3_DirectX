@@ -17,20 +17,17 @@ void GameScene::Initialize() {
 
 	// ファイル名を指定してテクスチャを呼び出す
 	textureHandle_=TextureManager::Load("mario.jpg");
-
 	// 3Dモデルの生成
 	model_ = Model::Create();
-
 	// ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
-
 	// ビュープロジェクションの初期化
 	viewProjection_.Initialize();
 
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの初期化
-	player_ -> Inttialize(model_,textureHandle_);
+	player_->Inttialize(model_, textureHandle_, &viewProjection_); 
 }
 
 void GameScene::Update() {
