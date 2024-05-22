@@ -1,6 +1,5 @@
 ﻿#include "WorldTransform.h"
 #include "myMath.h"
-#include "myMath.cpp"
 
 void WorldTransform::UpdateMatrix()
 {

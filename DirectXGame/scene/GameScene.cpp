@@ -31,7 +31,7 @@ void GameScene::Initialize() {
 	modelBlock_ = Model::Create();
 
 	// 
-	viewProjection_ = 
+	viewProjection_ = Initialize();
 
 	// デバックカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
@@ -66,10 +66,7 @@ void GameScene::Update() {
 	// ブロック更新
 	for (WorldTransform* worldTransformBlock : worldTransformBlocks_)
 	{
-		//==========
 		// アフィン変換行列
-		//==========
-
 		worldTransformBlock->UpdateMatrix();
 
 		// 定数バッファに転送する

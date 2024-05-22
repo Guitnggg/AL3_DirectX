@@ -1,16 +1,10 @@
 #include "myMath.h"
 
-struct Matrix4x4
-{
-    float m[4][4];
-};
-
 //アフィン変換行列作成
 Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate)
 {
-
     Matrix4x4 result = Multiply(
-      Multiply(MakeRotateXMatrix(rotate.x),MakeRotateYMatrix(rotate.y)),
+    Multiply(MakeRotateXMatrix(rotate.x),MakeRotateYMatrix(rotate.y)),
                MakeRotateZMatrix(rotate.z));
 
     result.m[0][0] *= scale.x;
@@ -56,7 +50,6 @@ Matrix4x4 MakeRotateYMatrix(float radian)
 //Z軸回転行列作成
 Matrix4x4 MakeRotateZMatrix(float radian)
 {
-
    float cosTheta = std::cos(radian);
    float sinTheta = std::sin(radian);
    return {cosTheta, sinTheta, 0.0f, 0.0f, -sinTheta, cosTheta, 0.0f, 0.0f,
@@ -67,7 +60,6 @@ Matrix4x4 MakeRotateZMatrix(float radian)
 //行列の掛け算
 Matrix4x4 Multiply(const Matrix4x4& m1, const Matrix4x4& m2) 
 {
-   
     Matrix4x4 result;
   
     result.m[0][0] = m1.m[0][0] * m2.m[0][0] + m1.m[0][1] * m2.m[1][0] + m1.m[0][2] * m2.m[2][0] +
