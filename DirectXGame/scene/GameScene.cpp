@@ -8,6 +8,16 @@ GameScene::~GameScene()
 {
 	// 3Dモデルデータの解放
 	delete model_;
+	delete modelBlock_;
+
+	for (WorldTransform* worldTransformBlock : worldTransformBlocks_)
+	{
+		delete worldTransformBlock;
+	}
+	worldTransformBlocks_.clear();
+
+	// デバックカメラの解放
+	delete debugCamera_;
 }
 
 void GameScene::Initialize() {
@@ -18,9 +28,79 @@ void GameScene::Initialize() {
 
 	// 3Dモデルの生成
 	model_ = Model::Create();
+	modelBlock_ = Model::Create();
+
+	// 
+	viewProjection_ = 
+
+	// デバックカメラの生成
+	debugCamera_ = new DebugCamera(1280, 720);
+
+	// 要素数
+	//const uint32_t kNumBlockVirtical=10;
+	const uint32_t kNumBlockHorizontal = 20;
+	// ブロック１個分の横幅
+	const float kBlockWidth = 2.0f;
+	//const float kBlockHeight = 2.0f;
+	// 要素数を変更する
+	/*worldTransformBlocks_.resize(kNumBlockvirtical);
+	for (uint32_t i = 0; i < kNumBlockVirtical; ++i)
+	{
+
+	}*/
+
+	worldTransformBlocks_.resize(kNumBlockHorizontal);
+
+	// キューブの生成
+	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i)
+	{
+		worldTransformBlocks_[i] = new WorldTransform();
+		worldTransformBlocks_[i]->Initialize();
+		worldTransformBlocks_[i]->translation_.x = kBlockWidth * i;
+		worldTransformBlocks_[i]->translation_.y = 0.0f;
+	}
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+
+	// ブロック更新
+	for (WorldTransform* worldTransformBlock : worldTransformBlocks_)
+	{
+		//==========
+		// アフィン変換行列
+		//==========
+
+		worldTransformBlock->UpdateMatrix();
+
+		// 定数バッファに転送する
+		worldTransformBlock->TransferMatrix();
+	}
+
+	// デバックカメラの更新
+	debugCamera_->Update();
+
+	#ifdef _DEBUG
+	if (input_->TriggerKey(DIK_SPACE))
+	{
+		isDebugCameraActive_ = true;
+	}
+	#endif
+
+	// カメラの処理
+	//if (isDebugCameraActive_)
+	//{
+	//	debugCamera_->Update();
+	//	viewProjection_.matView　=　デバッグカメラのビュー行列
+	//	viewProjection_.matProjection　=　デバックカメラのプロジェクション行列
+	//	// ビュープロジェクション行列の転送
+	//	viewProjection_.TransferMatrix();
+	//}
+	//else
+	//{
+	//	// ビュープロジェクション行列の更新と転送
+	//	viewProjection_.UpdateMatrix();
+	//}
+}
 
 void GameScene::Draw() {
 
@@ -48,6 +128,12 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+
+	// ブロックの描画
+	for (WorldTransform* worldTransformBlock : worldTransformBlocks_)
+	{
+		modelBlock_->Draw(*worldTransformBlock,viewProjection_);
+	}
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
