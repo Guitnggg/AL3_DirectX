@@ -1,6 +1,6 @@
-#include "myMath.h"
+ï»¿#include "myMath.h"
 
-//ƒAƒtƒBƒ“•ÏŠ·s—ñì¬
+//ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—ä½œæˆ
 Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate)
 {
     Matrix4x4 result = Multiply(
@@ -27,7 +27,7 @@ Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Ve
 }
 
 
-//X²‰ñ“]s—ñì¬
+//Xè»¸å›è»¢è¡Œåˆ—ä½œæˆ
 Matrix4x4 MakeRotateXMatrix(float radian)
 {
     float cosTheta = std::cos(radian);
@@ -37,7 +37,7 @@ Matrix4x4 MakeRotateXMatrix(float radian)
 }
 
 
-//Y²‰ñ“]s—ñì¬
+//Yè»¸å›è»¢è¡Œåˆ—ä½œæˆ
 Matrix4x4 MakeRotateYMatrix(float radian) 
 {
     float cosTheta = std::cos(radian);
@@ -47,7 +47,7 @@ Matrix4x4 MakeRotateYMatrix(float radian)
 }
 
 
-//Z²‰ñ“]s—ñì¬
+//Zè»¸å›è»¢è¡Œåˆ—ä½œæˆ
 Matrix4x4 MakeRotateZMatrix(float radian)
 {
    float cosTheta = std::cos(radian);
@@ -57,7 +57,7 @@ Matrix4x4 MakeRotateZMatrix(float radian)
 }
 
 
-//s—ñ‚ÌŠ|‚¯Z
+//è¡Œåˆ—ã®æ›ã‘ç®—
 Matrix4x4 Multiply(const Matrix4x4& m1, const Matrix4x4& m2) 
 {
     Matrix4x4 result;

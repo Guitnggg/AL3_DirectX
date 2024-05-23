@@ -52,10 +52,10 @@ private: // メンバ変数
 	Model* modelBlock_ = nullptr;
 
 	// 
-	ViewProjection* viewProjection_ = nullptr;
+	ViewProjection viewProjection_;
 
 	// 縦横ブロック配列
-	std::vector<WorldTransform*> worldTransformBlocks_;
+	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
 	// デバックカメラ有効
 	bool isDebugCameraActive_ = false;

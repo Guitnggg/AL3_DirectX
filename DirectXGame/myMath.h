@@ -1,16 +1,16 @@
-#include "GameScene.h"
+ï»¿#include "GameScene.h"
 
-// ƒAƒtƒBƒ“•ÏŠ·s—ñ
+// ã‚¢ãƒ•ã‚£ãƒ³å¤‰æ›è¡Œåˆ—
 Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, const Vector3& translate);
 
-// X²‰ñ“]s—ñ
+// Xè»¸å›è»¢è¡Œåˆ—
 Matrix4x4 MakeRotateXMatrix(float radian);
 
-// Y²‰ñ“]s—ñ
+// Yè»¸å›è»¢è¡Œåˆ—
 Matrix4x4 MakeRotateYMatrix(float radian);
 
-// Z²‰ñ“]s—ñ
+// Zè»¸å›è»¢è¡Œåˆ—
 Matrix4x4 MakeRotateZMatrix(float radian);
 
-// s—ñ‚ÌŠ|‚¯Z
+// è¡Œåˆ—ã®æ›ã‘ç®—
 Matrix4x4 Multiply(const Matrix4x4& m1, const Matrix4x4& m2);
