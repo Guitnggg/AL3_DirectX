@@ -68,8 +68,10 @@ private: // メンバ変数
 	// 
 	MapChipField* mapChipField_;
 
+	// マップチップフィールド
 	void GemerateBlocks();
 
+	
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

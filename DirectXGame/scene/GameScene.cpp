@@ -42,6 +42,12 @@ void GameScene::Initialize() {
 	// デバックカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 
+	// マップチップフィールド
+	mapChipField_ = new MapChipField;
+	mapChipField_->LoadMapChipCsv("Resources/map.csv");
+
+	GemerateBlocks();
+
 	// 要素数
 	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtial();
 	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
@@ -72,11 +78,6 @@ void GameScene::Initialize() {
 			}
 		}
 	}
-
-	mapChipField_ = new MapChipField;
-	mapChipField_->LoadMapChipCsv("Resources/map.csv");
-
-	GemerateBlocks();
 }
 
 void GameScene::Update() {
