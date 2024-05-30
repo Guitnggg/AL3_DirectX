@@ -11,6 +11,8 @@
 #include <vector>
 #include "DebugCamera.h"
 
+#include "MapChipField.h"
+
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -62,6 +64,11 @@ private: // メンバ変数
 
 	// デバックカメラ
 	DebugCamera* debugCamera_ = nullptr;
+
+	// 
+	MapChipField* mapChipField_;
+
+	void GemerateBlocks();
 
 	/// <summary>
 	/// ゲームシーン用

@@ -25,36 +25,36 @@ void MapChipField::ResetMapChipData()
 	}
 }
 
-void MapChipField::LoadMapChipCsv(const std::string& filePath)
+void MapChipField::LoadMapChipCsv(const std::string &filePath)
 {
-	// 
+	// マップチップデータのリセット
 	ResetMapChipData();
 
-	// 
+	// ファイルを開く
 	std::ifstream file;
 	file.open(filePath);
 	assert(file.is_open());
 
-	// 
+	// マップチップCSV
 	std::stringstream mapChipCsv;
-	// 
+	// ファイルの内容を文字列ストリームにコピー
 	mapChipCsv<<file.rdbuf();
-	// 
+	// ファイルを閉じる
 	file.close();
 
-	// 
+	// SCVからマップチップデータを読み込む
 	for (uint32_t i = 0; i < kNumBlockVirtical; ++i)
 	{
 		std::string line;
 		getline(mapChipCsv,line);
 
-		// 
+		// １行分の文字列をストリームに変換して解析しやすくする
 		std::istringstream line_stream(line);
 
 		for (uint32_t j = 0; j < kNumBlockHorizontal; ++j)
 		{
 			std::string word;
-			getline(line_stream,word ',');
+			getline(line_stream,word, ',');
 
 			if (mapChipTable.contains(word))
 			{
@@ -76,4 +76,9 @@ MapChipType MapChipField::GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex
 	}
 
 	return mapChipData_.data[yIndex][xIndex];
+}
+
+Vector3 MapChipField::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex)
+{
+	return Vector3(kBlockWidth * xIndex, kBlockHeight * (kNumBlockVirtical -1 -yIndex), 0);
 }
