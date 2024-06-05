@@ -1,5 +1,6 @@
 ﻿#include <cstdint>
 #include <vector>
+#include <string>
 #include "Vector3.h"
 
 /// <summary>
@@ -10,6 +11,11 @@ enum class MapChipType
 {
 	kBlank,  // 空白
 	kBlock,  // ブロック
+};
+
+struct MapChipData
+{
+	std::vector<std::vector<MapChipType>> data;
 };
 
 
@@ -27,15 +33,13 @@ class MapChipField
 
 	void ResetMapChipData();
 
-	void LoadMapChipCsv(const std::string &filePath);
+	void LoadMapChipCsv(const std::string& filePath);
 
 	MapChipType GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex);
 
 	Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
+
+	uint32_t GetNumBloackVirtical();
+	uint32_t GetNumBlockHorizontal();
 };
 
-
-struct MapChipData
-{
-	std::vector<std::vector<MapChipType>> data;
-};

@@ -49,7 +49,7 @@ void GameScene::Initialize() {
 	GemerateBlocks();
 
 	// 要素数
-	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtial();
+	uint32_t numBlockVirtical = mapChipField_->GetNumBloackVirtical();
 	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
 	
 	// ブロック１個分の横幅
@@ -80,8 +80,8 @@ void GameScene::Initialize() {
 	}
 }
 
-void GameScene::Update() {
-
+void GameScene::Update() 
+{
 	// ブロック更新
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_)
 	{

@@ -44,7 +44,6 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
-	// マップチップフィールド
 	void GemerateBlocks();
 
 private: // メンバ変数
@@ -68,13 +67,12 @@ private: // メンバ変数
 	// デバックカメラ
 	DebugCamera* debugCamera_ = nullptr;
 
-	// 
+	// マップチップフィールド
 	MapChipField* mapChipField_;
-
-	
 
 	
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
 };
+
