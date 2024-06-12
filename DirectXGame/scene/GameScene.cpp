@@ -46,10 +46,10 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
-	GemerateBlocks();
+	GenerateBlocks();
 
 	// 要素数
-	uint32_t numBlockVirtical = mapChipField_->GetNumBloackVirtical();
+	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
 	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
 	
 	// ブロック１個分の横幅

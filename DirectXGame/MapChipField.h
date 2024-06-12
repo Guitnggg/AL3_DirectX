@@ -9,37 +9,42 @@
 
 enum class MapChipType
 {
-	kBlank,  // 空白
-	kBlock,  // ブロック
+    kBlank,  // 空白
+    kBlock,  // ブロック
 };
 
 struct MapChipData
 {
-	std::vector<std::vector<MapChipType>> data;
+    std::vector<std::vector<MapChipType>> data;
 };
-
 
 class MapChipField
 {
-	// 1ブロックのサイズ
-	static inline const float kBlockWidth = 1.0f;
-	static inline const float kBlockHeight = 1.0f;
+public:
+    // マップチップデータの読み込み
+    void LoadMapChipCsv(const std::string& filePath);
 
-	// ブロックの個数
-	static inline const uint32_t kNumBlockVirtical = 20;
-	static inline const uint32_t kNumBlockHorizontal = 100;
+    // ブロックの個数を取得
+    uint32_t GetNumBlockVirtical() const;
+    uint32_t GetNumBlockHorizontal() const;
 
-	MapChipData mapChipData_;
+    // 指定したインデックスのマップチップタイプを取得
+    MapChipType GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex) const;
 
-	void ResetMapChipData();
+    // 指定したインデックスのマップチップの位置を取得
+    Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) const;
 
-	void LoadMapChipCsv(const std::string& filePath);
+private:
+    // 1ブロックのサイズ
+    static inline const float kBlockWidth = 1.0f;
+    static inline const float kBlockHeight = 1.0f;
 
-	MapChipType GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex);
+    // ブロックの個数
+    static inline const uint32_t kNumBlockVirtical = 20;
+    static inline const uint32_t kNumBlockHorizontal = 100;
 
-	Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
+    MapChipData mapChipData_;
 
-	uint32_t GetNumBloackVirtical();
-	uint32_t GetNumBlockHorizontal();
+    // マップチップデータをリセット
+    void ResetMapChipData();
 };
-
