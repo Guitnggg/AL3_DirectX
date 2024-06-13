@@ -53,8 +53,8 @@ void GameScene::Initialize() {
 	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
 	
 	// ブロック１個分の横幅
-	const float kBlockWidth = 2.0f;
-	const float kBlockHeight = 2.0f;
+	/*const float kBlockWidth = 2.0f;
+	const float kBlockHeight = 2.0f;*/
 	
 	// 要素数を変更する
 	worldTransformBlocks_.resize(numBlockVirtical);
