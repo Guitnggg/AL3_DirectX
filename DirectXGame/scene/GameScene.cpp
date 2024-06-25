@@ -39,8 +39,6 @@ void GameScene::Initialize() {
 
 	// 自キャラの生成
 	player_ = new Player();
-	// 自キャラの初期化
-	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
 	// 天球の生成
 	skydome_ = new Skydome();
@@ -77,6 +75,12 @@ void GameScene::Initialize() {
 				}
 			}
 	}
+
+
+	// 
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
+	// 自キャラの初期化
+	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280,720);
@@ -157,9 +161,9 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	// 3Dモデル描画
-//	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
 	// 自キャラの描画
-//	player_->Draw();
+	player_->Draw();
 
 	// 天球の描画
 	skydome_->Draw();

@@ -14,3 +14,6 @@ Matrix4x4 MakeRotateZMatrix(float radian);
 
 // 行列の掛け算
 Matrix4x4 Multiply(const Matrix4x4& m1, const Matrix4x4& m2);
+
+//
+Vector3& operator+=(Vector3& lhv, const Vector3& rhv);
