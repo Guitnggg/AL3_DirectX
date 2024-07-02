@@ -3,32 +3,32 @@
 
 class Player {
 public:
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	/// <param name="model">モデル</param>
-	/// <param name="textureHandle">テクスチャハンドル</param>
-	void Inttialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
+    void Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
 
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	void Update();
-
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	void Draw();
+    void Update();
+    
+    void Draw();
 
 private:
-	// ワールド変換データ
-	WorldTransform worldTransform_;
+    WorldTransform worldTransform_;
+    Model* model_ = nullptr;
+    uint32_t textureHandle_ = 0u;
+    ViewProjection* viewProjection_ = nullptr;
+  
+    Vector3 velocity_ = {};
+    enum class LRDirection { kRight, kLeft };
+    float turnFirstRotationY_ = 0.0f;
+    float turnTimer_ = 0.0f;
+    static inline const float kAcceleration = 0.1f;
+    static inline const float kAttenuation = 0.2f;
+    static inline const float kLimitRunSpeed = 5.0f;
+    static inline const float kTimeTurn = 0.3f;
+    LRDirection lrDirection_ = LRDirection::kRight;
+    bool onGround_ = true;
+    static inline const float kGravityAcceleration = 0.8f;
+    static inline const float kLimitFallSpeed = 1.0f;
+    static inline const float kJumpAcceleration = 5.0f;
 
-	// モデル
-	Model* model_ = nullptr;
-
-	// テクスチャハンドル
-	uint32_t textureHandle_ = 0u;
-
-	ViewProjection* viewProjection_ = nullptr;
+    MapChipField* mapChipField_ = nullptr;
+    Player* player_ = nullptr;
 };

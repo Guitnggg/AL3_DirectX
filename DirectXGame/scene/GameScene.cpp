@@ -46,8 +46,11 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
-	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
 
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(1, 1);
+
+	// 自キャラの生成
+	player_ = new Player();
 	player_->Inttialize(model_, &viewProjection_, playerPosition);
 
 	// 要素数
