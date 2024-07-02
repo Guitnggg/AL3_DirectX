@@ -1,21 +1,25 @@
-#include "Player.h"
+ï»¿#include "Player.h"
 #include <cassert>
+#include <numbers>
 
-void Player::Inttialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection)
+void Player::Inttialize(Model* model, ViewProjection* viewProjection, const Vector3& position)
 {
-	// NULLƒ|ƒCƒ“ƒ^ƒ`ƒFƒbƒN
+	// NULLãƒã‚¤ãƒ³ã‚¿ãƒã‚§ãƒƒã‚¯
 	assert(model);
 
 	model_ = model;
-	textureHandle_ = textureHandle;
+	/*textureHandle_ = textureHandle;*/
 	viewProjection_ = viewProjection;
 
 	worldTransform_.Initialize();
+	worldTransform_.translation_ = position;
+
+	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 2.0f;
 }
 
 void Player::Update()
 {
-	// s—ñ‚ğ’è”ƒoƒbƒtƒ@‚É“]‘—
+	// è¡Œåˆ—ã‚’å®šæ•°ãƒãƒƒãƒ•ã‚¡ã«è»¢é€
 	worldTransform_.TransferMatrix();
 }
 

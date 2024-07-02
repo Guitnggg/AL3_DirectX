@@ -10,7 +10,7 @@
 #include "WorldTransform.h"
 #include <vector>
 #include "DebugCamera.h"
-
+#include "Player.h"
 #include "MapChipField.h"
 
 /// <summary>
@@ -69,6 +69,9 @@ private: // メンバ変数
 
 	// マップチップフィールド
 	MapChipField* mapChipField_;
+
+	// Player
+	Player* player_ = nullptr;
 	
 	
 	/// <summary>
