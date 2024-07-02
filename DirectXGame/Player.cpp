@@ -16,8 +16,6 @@ void Player::Initialize(Model* model, ViewProjection* viewProjection, const Vect
     worldTransform_.translation_ = position;
     worldTransform_.rotation_.y = std::numbers::pi_v<float> / 2.0f;
 
-    Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
-    player_->Initialize(model_, viewProjection_, playerPosition);
 }
 
 void Player::Update() {
