@@ -46,7 +46,8 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
-	textureHandle_=Load
+	// ファイル名を指定してテクスチャを呼び出す
+	textureHandle_ = TextureManager::Load("Resources/player/player.png");
 
 	
 
@@ -85,7 +86,7 @@ void GameScene::Initialize() {
 	player_ = new Player();
 
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
-	player_->Initialize(model_,&viewProjection_, playerPosition);
+	player_->Initialize(model_, textureHandle_, &viewProjection_, playerPosition);
 }
 
 void GameScene::Update() 
