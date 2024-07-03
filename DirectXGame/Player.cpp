@@ -7,7 +7,7 @@
 #include "Input.h"
 #include "myMath.h"
 
-void Player::Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position) 
+void Player::Initialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection, const Vector3& position)
 {
     assert(model);
     model_ = model;
