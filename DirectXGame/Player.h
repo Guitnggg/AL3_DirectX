@@ -1,4 +1,6 @@
-﻿#include "Model.h"
+﻿#pragma once
+
+#include "Model.h"
 #include "WorldTransform.h"
 
 class Player {
