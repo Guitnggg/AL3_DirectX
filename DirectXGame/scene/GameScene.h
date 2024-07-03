@@ -56,6 +56,9 @@ private: // メンバ変数
 	Model* model_ = nullptr;
 	Model* modelBlock_ = nullptr;
 
+	// テクスチャハンドル
+	uint32_t textureHandle_ = 0;
+
 	// 
 	ViewProjection viewProjection_;
 
