@@ -48,11 +48,7 @@ void GameScene::Initialize() {
 
 
 
-	// 自キャラの生成
-	player_ = new Player();
 	
-	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
-	player_->Initialize(model_, &viewProjection_, playerPosition);
 
 	// 要素数
 	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
@@ -84,6 +80,12 @@ void GameScene::Initialize() {
 			}
 		}
 	}
+
+	// 自キャラの生成
+	player_ = new Player();
+
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
+	player_->Initialize(model_, &viewProjection_, playerPosition);
 }
 
 void GameScene::Update() 

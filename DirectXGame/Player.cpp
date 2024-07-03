@@ -1,5 +1,4 @@
-﻿
-#define NOMINMAX
+﻿#define NOMINMAX
 
 #include "Player.h"
 #include <cassert>
