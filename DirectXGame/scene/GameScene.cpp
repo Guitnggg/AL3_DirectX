@@ -46,11 +46,6 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 
-	// ファイル名を指定してテクスチャを呼び出す
-	textureHandle_ = TextureManager::Load("Resources/player/player.png");
-
-	
-
 	// 要素数
 	uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
 	uint32_t numBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
@@ -84,6 +79,9 @@ void GameScene::Initialize() {
 
 	// 自キャラの生成
 	player_ = new Player();
+
+	// ファイル名を指定してテクスチャを呼び出す
+	textureHandle_ = TextureManager::Load("Resources/player/player.png");
 
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
 	player_->Initialize(model_, textureHandle_, &viewProjection_, playerPosition);

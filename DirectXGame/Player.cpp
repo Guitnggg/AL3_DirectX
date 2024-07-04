@@ -10,6 +10,7 @@
 void Player::Initialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection, const Vector3& position)
 {
     assert(model);
+    model_ = Model::CreateFromOBJ("Resources/player/player.obj");
     model_ = model;
     textureHandle_ = textureHandle;
     viewProjection_ = viewProjection;
