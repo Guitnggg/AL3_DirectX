@@ -87,6 +87,7 @@ void GameScene::Initialize() {
 	player_->Initialize(model_, textureHandle_, &viewProjection_, playerPosition);
 
 	// カメラコントローラー
+	cameraController_ = new CamaraController;
 	cameraController_->Initialize();
 	cameraController_->SetTarget(player_);
 	cameraController_->Reset(); 

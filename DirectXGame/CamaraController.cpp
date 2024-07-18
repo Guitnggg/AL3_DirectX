@@ -19,10 +19,8 @@ void CamaraController::Update()
 	viewProjection_.translation_ = Lerp(viewProjection_.translation_, goalPosition, kInterPolationRate);
 
 	// 移動範囲制限
-	viewProjection_.translation_.x = std::min(viewProjection_.translation_.x, movableArea_.left + majine.left);
-	viewProjection_.translation_.x = std::max(viewProjection_.translation_.x, movableArea_.right + majine.right);
-	viewProjection_.translation_.y = std::min(viewProjection_.translation_.y, movableArea_.bottom + majine.bottom);
-	viewProjection_.translation_.y = std::max(viewProjection_.translation_.y, movableArea_.top+majine.top);
+	viewProjection_.translation_.x = std::clamp(viewProjection_.translation_.x, movableArea_.left + majine.left, movableArea_.right - majine.right);
+	viewProjection_.translation_.y = std::clamp(viewProjection_.translation_.y, movableArea_.bottom + majine.bottom, movableArea_.top - majine.top);
 
 	// 行列を更新する
 	viewProjection_.UpdateMatrix();

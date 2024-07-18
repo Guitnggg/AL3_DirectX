@@ -80,11 +80,10 @@ private: // メンバ変数
 	Player* player_ = nullptr;
 
 	// カメラコントローラー
-	CamaraController* cameraController_ = nullptr;
-	
+	CamaraController* cameraController_;
 	
 	/// <summary>
-	/// ゲームシーン用
+	/// ゲームシーン
 	/// </summary>
 };
 
