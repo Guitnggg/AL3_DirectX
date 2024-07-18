@@ -85,6 +85,8 @@ void GameScene::Initialize() {
 
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
 	player_->Initialize(model_, textureHandle_, &viewProjection_, playerPosition);
+	
+	player_->SetMapChipField(mapChipField_);
 
 	// カメラコントローラー
 	cameraController_ = new CamaraController;
