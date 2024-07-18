@@ -12,6 +12,7 @@
 #include "DebugCamera.h"
 #include "Player.h"
 #include "MapChipField.h"
+#include "CamaraController.h"
 
 
 
@@ -77,6 +78,9 @@ private: // メンバ変数
 
 	// Player
 	Player* player_ = nullptr;
+
+	// カメラコントローラー
+	CamaraController* cameraController_ = nullptr;
 	
 	
 	/// <summary>

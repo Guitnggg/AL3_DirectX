@@ -85,6 +85,13 @@ void GameScene::Initialize() {
 
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(0, 0);
 	player_->Initialize(model_, textureHandle_, &viewProjection_, playerPosition);
+
+	// カメラコントローラー
+	cameraController_->Initialize();
+	cameraController_->SetTarget(player_);
+	cameraController_->Reset(); 
+	CamaraController::Rect cameraArea = { 12.0f,100 - 12.0f,6.0f,6.0f };
+	cameraController_->SetMovableArea(cameraArea);
 }
 
 void GameScene::Update() 
@@ -129,8 +136,13 @@ void GameScene::Update()
 	}
 	else
 	{
+		// カメラコントローラーの更新
+		cameraController_->Update();
+		viewProjection_.matView = cameraController_->GetViewProjection().matView;
+		viewProjection_.matProjection = cameraController_->GetViewProjection().matProjection;
+
 		// ビュープロジェクション行列の更新と転送
-		viewProjection_.UpdateMatrix();
+		viewProjection_.TransferMatrix();
 	}
 }
 
