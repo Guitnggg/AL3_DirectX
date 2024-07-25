@@ -34,6 +34,24 @@ public:
     // 指定したインデックスのマップチップの位置を取得
     Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) const;
 
+    struct IndexSet
+    {
+        uint32_t xIndex;
+        uint32_t yIndex;
+    };
+
+    IndexSet GetMapChipIndexSetByPosition(const Vector3& position);
+
+    struct Rect
+    {
+        float left;
+        float right;
+        float bottom;
+        float top;
+    };
+
+    Rect GetRectByIndex(uint32_t xIndex, uint32_t yIndex);
+
 private:
     // 1ブロックのサイズ
     static inline const float kBlockWidth = 1.0f;
