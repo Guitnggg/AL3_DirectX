@@ -7,26 +7,38 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	delete modelBlocks_;
+	
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
 			delete worldTransformBlock;
 		}
 	}
+	
 	worldTransformBlocks_.clear();
+	
 	delete debugCamera_;
+	
 	delete modelSkydome_;
+	
 	delete player_;
+	
 	delete skydome_;
+	
 	delete mapChipField_;
 }
 
 void GameScene::Initialize() {
-
+		
 	dxCommon_ = DirectXCommon::GetInstance();
+	
 	input_ = Input::GetInstance();
+	
 	audio_ = Audio::GetInstance();
+	
 	modelBlocks_ = Model::Create();
+	
 	viewProjection_.Initialize();
+	
 	//自キャラの生成
 	player_ = new Player();
 	//自キャラの生成(モデル)
@@ -35,12 +47,14 @@ void GameScene::Initialize() {
 	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(1, 18);
 	//自キャラの初期化
 	player_->Initialize(modelPlayer_, &viewProjection_, playerPosition);
+	
 	//  3Dモデルの生成
 	modelSkydome_ = Model::CreateFromOBJ("skydome", true);
 	// 天球の生成
 	skydome_ = new Skydome();
 	//天球の初期化
 	skydome_->Initialize(modelSkydome_, &viewProjection_);
+	
 	//マップチップフィールドの生成
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
@@ -59,6 +73,7 @@ void GameScene::Update() {
 			worldTransformBlock->UpdateMatrix();
 		}
 	}
+	
 	//デバックカメラの更新
 	debugCamera_->Update();
 #ifdef _DEBUG

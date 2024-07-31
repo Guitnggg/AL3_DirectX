@@ -1,13 +1,13 @@
 ﻿#include "Skydome.h"
 
-void Skydome::Initialize(Model *model, ViewProjection* viewProjection) { 
-	
-	worldTransform_.Initialize(); 
+void Skydome::Initialize(Model* model, ViewProjection* viewProjection) {
+	assert(model);
 	model_ = model;
 	viewProjection_ = viewProjection;
-}
+	worldTransform_.Initialize();
+};
 
-void Skydome::Update() {}
+void Skydome::Update() { worldTransform_.UpdateMatrix(); }
 
 void Skydome::Draw() {
 	// 3Dモデル描画
