@@ -100,7 +100,7 @@ void Player::Update() {
 			// めり込み排斥
 			worldTransform_.translation_.y = 2.0f;
 			// 摩擦で横方向速度が減衰する
-			velocity_.x *= (1.0f - kAttenuation);
+			velocity_.x *= (1.0f - kAttenuationLanding);
 			// 下方向速度をリセット
 			velocity_.y = 0.0f;
 			// 接地状態に移行

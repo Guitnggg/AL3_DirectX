@@ -2,18 +2,17 @@
 #include "TextureManager.h"
 #include <cassert>
 #include "WorldTransform.h"
+#include "CameraController.h"
 
 GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	delete modelBlocks_;
-	
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
 			delete worldTransformBlock;
 		}
 	}
-	
 	worldTransformBlocks_.clear();
 	
 	delete debugCamera_;
@@ -25,10 +24,12 @@ GameScene::~GameScene() {
 	delete skydome_;
 	
 	delete mapChipField_;
+	
+	delete cameraController_;
 }
 
 void GameScene::Initialize() {
-		
+
 	dxCommon_ = DirectXCommon::GetInstance();
 	
 	input_ = Input::GetInstance();
@@ -60,7 +61,14 @@ void GameScene::Initialize() {
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
 	//デバックカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
+	
 	GenerateBlocks();
+	
+	//カメラコントローラの初期化
+	cameraController_ = new CameraController();
+	cameraController_->Initialize(&viewProjection_, movableArea);
+	cameraController_->SetTarget(player_);
+	cameraController_->Reset();
 }
 
 void GameScene::Update() {
@@ -99,10 +107,13 @@ void GameScene::Update() {
 		//ビュープロジェクション行列の更新と転送
 		viewProjection_.UpdateMatrix();
 	}
+	
 	//天球の更新
 	skydome_->Update();
 	//自キャラの更新
 	player_->Update();
+	//カメラコントローラの更新
+	cameraController_->Update();
 }
 
 void GameScene::Draw() {

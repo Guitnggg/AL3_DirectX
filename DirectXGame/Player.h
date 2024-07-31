@@ -31,7 +31,8 @@ public:
 	/// 描画
 	/// </summary>
 	void Draw();
-
+	const WorldTransform& GetWorldTransform() { return worldTransform_; };
+	const Vector3& Getvelocity() const { return velocity_; }
 private:
 	static inline const float kAcceleration = 0.1f;
 	static inline const float kAttenuation = 0.5f;
@@ -44,6 +45,7 @@ private:
 	static inline const float kLimitFallSpeed = 1.0f;
 	//ジャンプ初速(上方向)
 	static inline const float kJumpAcceleration = 1.0f;
+	static inline const float kAttenuationLanding = 0.5f;
 	//旋回開始時の角度
 	float turnFirstRotationY_ = 0.0f;
 	//旋回タイマー
