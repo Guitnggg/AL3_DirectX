@@ -4,18 +4,16 @@
 #include "DirectXCommon.h"
 #include "Input.h"
 #include "Model.h"
-#include "SafeDelete.h"
 #include "Sprite.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include <vector>
 #include "DebugCamera.h"
+#include "mymath.h"
+#include "Skydome.h"
 #include "Player.h"
 #include "MapChipField.h"
 #include "CamaraController.h"
-
-
-
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -46,44 +44,31 @@ public: // メンバ関数
 	/// 描画
 	/// </summary>
 	void Draw();
-
-	
+	void GenerateBlocks();
 
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
-	
-	// 3Dモデルデータ
-	Model* model_ = nullptr;
-	Model* modelBlock_ = nullptr;
-
-	// テクスチャハンドル
-	uint32_t textureHandle_ = 0;
-
-	// 
-	ViewProjection viewProjection_;
-
-	// 縦横ブロック配列
+	Model* modelBlocks_ = nullptr;
 	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
-
+	ViewProjection viewProjection_;
 	// デバックカメラ有効
 	bool isDebugCameraActive_ = false;
-
 	// デバックカメラ
 	DebugCamera* debugCamera_ = nullptr;
-
-	// マップチップフィールド
-	MapChipField* mapChipField_;
-
-	// Player
+	// 天球
+	Skydome* skydome_ = nullptr;
+	// 3Dモデル
+	Model* modelSkydome_ = nullptr;
+	// 自キャラ
 	Player* player_ = nullptr;
-
-	// カメラコントローラー
-	CamaraController* cameraController_;
-	
+	Model* modelPlayer_ = nullptr;
+	MapChipField* mapChipField_;
+	//カメラコントローラ
+	CameraController* cameraController_ = nullptr;
+	CameraController::Rect movableArea = { 0, 100, 0, 100 };
 	/// <summary>
-	/// ゲームシーン
+	/// ゲームシーン用
 	/// </summary>
 };
-
