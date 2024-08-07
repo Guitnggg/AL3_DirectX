@@ -7,6 +7,7 @@
 #include <numbers>
 #include <algorithm>
 #include <Vector4.h>
+#include "ObjectColor.h"
 
 /// <summary>
 /// デス演出用パーティクル
