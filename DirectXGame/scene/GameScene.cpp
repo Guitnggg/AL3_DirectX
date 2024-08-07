@@ -19,8 +19,6 @@ GameScene::~GameScene()
 	
 	delete debugCamera_;
 	
-	delete modelBlocks_;
-	
 	delete modelEnemy_;
 	for (Enemy* enemy : enemies_) {
 		delete enemy;
