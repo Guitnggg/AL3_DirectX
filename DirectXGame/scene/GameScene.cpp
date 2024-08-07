@@ -7,8 +7,7 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene()
-{
+GameScene::~GameScene() {
 	delete modelBlocks_;
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
@@ -16,42 +15,31 @@ GameScene::~GameScene()
 		}
 	}
 	worldTransformBlocks_.clear();
-	
 	delete debugCamera_;
-	
 	delete modelBlocks_;
-	
 	delete modelEnemy_;
 	for (Enemy* enemy : enemies_) {
 		delete enemy;
 	}
-	
-	delete modelSkydome_;
-	
-	delete player_;
-	
-	delete skydome_;
-	
-	delete mapChipField_;
-	
-	delete cameraController_;
-
+	delete modelParticles_;
 	delete deathParticles_;
+	delete modelSkydome_;
+	delete player_;
+	delete skydome_;
+	delete mapChipField_;
+	delete cameraController_;
 }
 
-void GameScene::Initialize()
-{
+void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 	modelBlocks_ = Model::CreateFromOBJ("block", true);
 	viewProjection_.Initialize();
-	
 	// マップチップフィールドの生成
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
-	
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの生成(モデル)
@@ -71,14 +59,19 @@ void GameScene::Initialize()
 		newEnemy->Initialize(modelEnemy_, &viewProjection_, enemyPosition);
 		enemies_.push_back(newEnemy);
 	}
-	
+
+	//パーティクルモデル
+	modelParticles_ = Model::CreateFromOBJ("deathParticle", true);
+	//仮の生成
+	deathParticles_ = new DeathParticles;
+	deathParticles_->Initialize(modelParticles_, &viewProjection_, playerPosition);
+
 	//  3Dモデルの生成
-	modelSkydome_ = Model::CreateFromOBJ("sphere", true);
+	modelSkydome_ = Model::CreateFromOBJ("skydome", true);
 	// 天球の生成
 	skydome_ = new Skydome();
 	// 天球の初期化
 	skydome_->Initialize(modelSkydome_, &viewProjection_);
-	
 	// デバックカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 	GenerateBlocks();
@@ -93,14 +86,9 @@ void GameScene::Initialize()
 	*/
 	//全ての当たり判定を行う
 	CheckAllCollisions();
-
-	// 仮の生成処理。後で消す
-	deathParticles_ = new DeathParticles;
-	deathParticles_->Initialize(modelDeathParticles_, &viewProjection_, playerPosition);
 }
 
-void GameScene::Update()
-{
+void GameScene::Update() {
 	// ブロックの更新
 	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
@@ -142,21 +130,19 @@ void GameScene::Update()
 	skydome_->Update();
 	// 自キャラの更新
 	player_->Update();
+	// パーティクルの更新
+	if (deathParticles_) {
+		deathParticles_->Update();
+	}
 	//敵の更新
 	for (Enemy* enemy : enemies_) {
 		enemy->Update();
 	}
-
 	// カメラコントローラの更新
 	cameraController_->Update();
-
-	if (deathParticles_) {
-		deathParticles_->Update();
-	}
 }
 
-void GameScene::Draw()
-{
+void GameScene::Draw() {
 
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
@@ -198,12 +184,12 @@ void GameScene::Draw()
 	for (Enemy* enemy : enemies_) {
 		enemy->Draw();
 	}
+	//パーティクル描画
+	if (deathParticles_) {
+		deathParticles_->Draw();
+	}
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
-
-	if (deathParticles_) {
-		deathParticles_->Draw()
-	}
 #pragma endregion
 
 #pragma region 前景スプライト描画
@@ -219,8 +205,7 @@ void GameScene::Draw()
 
 #pragma endregion
 }
-void GameScene::GenerateBlocks()
-{
+void GameScene::GenerateBlocks() {
 	{
 		// 要素数
 		uint32_t numBlockVirtical = mapChipField_->GetNumBlockVirtical();
@@ -247,8 +232,7 @@ void GameScene::GenerateBlocks()
 }
 
 //全ての当たり判定
-void GameScene::CheckAllCollisions() 
-{
+void GameScene::CheckAllCollisions() {
 #pragma region 自キャラと敵キャラの当たり判定
 	//判定対象1と2の座標
 	AABB aabb1, aabb2;

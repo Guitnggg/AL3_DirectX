@@ -74,19 +74,16 @@ private:
 	//敵
 	std::list<Enemy*> enemies_;
 	Model* modelEnemy_ = nullptr;
-	//発生させる数
 
+	//パーティクル
+	DeathParticles* deathParticles_ = nullptr;
+	Model* modelParticles_ = nullptr;
 
 	//マップチップフィールド
 	MapChipField* mapChipField_;
 	//カメラコントローラ
 	CameraController* cameraController_ = nullptr;
 	CameraController::Rect movableArea = { 0, 100, 0, 100 };
-
-	// deathParticles
-	DeathParticles* deathParticles_ = nullptr;
-	Model* modelDeathParticles_ = nullptr;
-
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
