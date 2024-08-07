@@ -14,12 +14,17 @@ GameScene::~GameScene() {
 		}
 	}
 	worldTransformBlocks_.clear();
+	
 	delete debugCamera_;
-	delete modelBlocks_;
+	 
 	delete modelSkydome_;
+	
 	delete player_;
+	
 	delete skydome_;
+	
 	delete mapChipField_;
+	
 	delete cameraController_;
 }
 
@@ -30,9 +35,11 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 	modelBlocks_ = Model::CreateFromOBJ("block", true);
 	viewProjection_.Initialize();
+	
 	// マップチップフィールドの生成
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/map.csv");
+	
 	// 自キャラの生成
 	player_ = new Player();
 	// 自キャラの生成(モデル)
@@ -42,15 +49,18 @@ void GameScene::Initialize() {
 	// 自キャラの初期化
 	player_->Initialize(modelPlayer_, &viewProjection_, playerPosition);
 	player_->SetMapChipField(mapChipField_);
+	
 	//  3Dモデルの生成
-	modelSkydome_ = Model::CreateFromOBJ("skydome", true);
+	modelSkydome_ = Model::CreateFromOBJ("sphere", true);
 	// 天球の生成
 	skydome_ = new Skydome();
 	// 天球の初期化
 	skydome_->Initialize(modelSkydome_, &viewProjection_);
+	
 	// デバックカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
 	GenerateBlocks();
+	
 	// カメラコントローラの初期化
 	cameraController_ = new CameraController();
 	cameraController_->Initialize(&viewProjection_, movableArea);
