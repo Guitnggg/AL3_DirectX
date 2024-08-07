@@ -7,7 +7,7 @@
 #include <numbers>
 #include <algorithm>
 #include <Vector4.h>
-#include "ObjectColor.h"
+#include <ObjectColor.h>
 
 /// <summary>
 /// デス演出用パーティクル
@@ -23,6 +23,9 @@ public:
 
 	void Draw();
 
+	// デスグラグのgetter
+	bool IsFinished() const { return finished_; }
+
 private:
 	// パーティクルの個数
 	static inline const uint32_t kNumParticles = 8;
@@ -36,7 +39,7 @@ private:
 	//分割した1個分の角度
 	static inline const float kAngleUnit = (2 * std::numbers::pi_v<float> / kNumParticles);
 	//終了フラグ
-	bool isFinished_ = false;
+	bool finished_ = false;
 	//経過時間カウント
 	float counter_ = 0.0f;
 	// ワールド変換データ
