@@ -71,7 +71,7 @@ void GameScene::Initialize()
 	}
 	
 	//  3Dモデルの生成
-	modelSkydome_ = Model::CreateFromOBJ("skydome", true);
+	modelSkydome_ = Model::CreateFromOBJ("sphere", true);
 	// 天球の生成
 	skydome_ = new Skydome();
 	// 天球の初期化
