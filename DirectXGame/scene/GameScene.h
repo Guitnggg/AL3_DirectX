@@ -15,6 +15,7 @@
 #include "Enemy.h"
 #include "MapChipField.h"
 #include "CameraController.h"
+#include "DeathParticles.h"
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -81,6 +82,11 @@ private:
 	//カメラコントローラ
 	CameraController* cameraController_ = nullptr;
 	CameraController::Rect movableArea = { 0, 100, 0, 100 };
+
+	// deathParticles
+	DeathParticles* deathParticles_ = nullptr;
+	Model* modelDeathParticles_ = nullptr;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

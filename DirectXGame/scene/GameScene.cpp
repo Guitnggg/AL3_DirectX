@@ -35,6 +35,8 @@ GameScene::~GameScene()
 	delete mapChipField_;
 	
 	delete cameraController_;
+
+	delete deathParticles_;
 }
 
 void GameScene::Initialize()
@@ -91,6 +93,10 @@ void GameScene::Initialize()
 	*/
 	//全ての当たり判定を行う
 	CheckAllCollisions();
+
+	// 仮の生成処理。後で消す
+	deathParticles_ = new DeathParticles;
+	deathParticles_->Initialize(modelDeathParticles_, &viewProjection_, playerPosition);
 }
 
 void GameScene::Update()
@@ -143,6 +149,10 @@ void GameScene::Update()
 
 	// カメラコントローラの更新
 	cameraController_->Update();
+
+	if (deathParticles_) {
+		deathParticles_->Update();
+	}
 }
 
 void GameScene::Draw()
@@ -190,6 +200,10 @@ void GameScene::Draw()
 	}
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
+
+	if (deathParticles_) {
+		deathParticles_->Draw()
+	}
 #pragma endregion
 
 #pragma region 前景スプライト描画

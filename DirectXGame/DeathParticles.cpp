@@ -1,4 +1,4 @@
-#include "DeathParticles.h"
+ï»¿#include "DeathParticles.h"
 #include "mymath.h"
 #include <numbers>
 
@@ -8,7 +8,7 @@ void DeathParticles::Initialize(Model* model, ViewProjection* viewProjection, co
 	model_ = model;
 	viewProjection_ = viewProjection;
 
-	// ƒ[ƒ‹ƒh•ÏŠ·‚Ì‰Šú‰»
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›ã®åˆæœŸåŒ–
 	for (auto& worldTransform : worldTransforms_) {
 		worldTransform.Initialize();
 		worldTransform.translation_ = position;
@@ -17,8 +17,8 @@ void DeathParticles::Initialize(Model* model, ViewProjection* viewProjection, co
 
 void DeathParticles::Update()
 {
+	// è¡Œåˆ—è¨ˆç®—
+	worldTransform_.UpdateMatrix();
 }
 
-void DeathParticles::Draw()
-{
-}
+void DeathParticles::Draw() { model_->Draw(worldTransform_, *viewProjection_); }

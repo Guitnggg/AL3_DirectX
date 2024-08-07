@@ -1,26 +1,27 @@
-#pragma once
+ï»¿#pragma once
 
 #include "Model.h"
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include <array>
+#include <cassert>
 
 /// <summary>
-/// ƒfƒX‰‰o—pƒp[ƒeƒBƒNƒ‹
+/// ãƒ‡ã‚¹æ¼”å‡ºç”¨ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«
 /// </summary>
 class DeathParticles
 {
 public:
 	/// <summary>
-	/// ‰Šú‰»
+	/// åˆæœŸåŒ–
 	/// </summary>
 	void Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
 	/// <summary>
-	/// XV
+	/// æ›´æ–°
 	/// </summary>
 	void Update();
 	/// <summary>
-	/// •`‰æ
+	/// æç”»
 	/// </summary>
 	void Draw();
 
@@ -30,7 +31,7 @@ private:
 	ViewProjection* viewProjection_ = nullptr;
 	WorldTransform worldTransform_;
 
-	// ƒp[ƒeƒBƒNƒ‹‚ÌŒÂ”
+	// ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã®å€‹æ•°
 	static inline const uint32_t kNumParitcles = 8;
 	std::array<WorldTransform, kNumParitcles>worldTransforms_;
 
