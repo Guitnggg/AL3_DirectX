@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include "Vector4.h"
 #include <d3d12.h>
 #include <wrl.h>
@@ -34,7 +34,7 @@ public:
 	void SetColor(const Vector4& color) { color_ = color; }
 
 private:
-	Vector4 color_ = { 1, 1, 1, 1 };
+	Vector4 color_ = {1, 1, 1, 1};
 	// 定数バッファ
 	Microsoft::WRL::ComPtr<ID3D12Resource> constBuffer_;
 	// マッピング済みアドレス
