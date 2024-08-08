@@ -55,7 +55,7 @@ public:
     /// <summary>
     /// 
     /// </summary>
-	/// 
+	void UpdateMatrix();
 
 private:
 	// 定数バッファ
